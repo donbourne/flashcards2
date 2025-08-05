@@ -182,7 +182,19 @@ class GameController:
                 full_query = f"{query} official music video"
                 try:
                     videos = get_youtube_videos(api_key, full_query, max_results=10, only_include_popular=True, view_threshold=1000000)
-                    for url, artist, song in videos:
+                    
+                    # Filter out videos already in the list
+                    existing_urls = set(pair.question.question for pair in self.knowledge_base.pairs)
+                    new_videos = [v for v in videos if v[0] not in existing_urls]
+
+                    # Sort by views (assuming get_youtube_videos returns (url, artist, song, views))
+                    # If not, you may need to adjust get_youtube_videos to return views as the 4th element
+                    if new_videos and len(new_videos[0]) == 4:
+                        new_videos.sort(key=lambda x: x[3], reverse=True)
+                    # If views are not available, just use the order returned
+
+                    # Only add the top 3
+                    for url, artist, song, *rest in new_videos[:3]:
                         question = Question(url)
                         answer = Answer((artist, song))
                         pair = QuestionAnswerPair(id=pair_id, question=question, answer=answer)
