@@ -2,7 +2,6 @@ id,question,artist,song
 1,https://www.youtube.com/watch?v=e-ORhEE9VVg&list=RDEMb1vAi4rwXXeDlr7NZ68C_w&start_radio=1&t=3,taylor swift,blank space
 2,https://youtu.be/Sl6en1NPTYM?list=RDEMb1vAi4rwXXeDlr7NZ68C_w&t=7,taylor swift,i can do it with a broken heart
 3,https://www.youtube.com/watch?v=Cbl-IR2G4y4,miley cyrus,heaven
-4,https://www.youtube.com/watch?v=CRhXletqFyw,billie eilish,birds of a feather
 5,https://www.youtube.com/watch?v=ir11ZA4lJJk,billie eilish,blue
 6,https://www.youtube.com/watch?v=3pKfuNBMQW8&list=RDCLAK5uy_mkh1nnin_Fb4OkYs--r2iF59j62Y_YXyE&index=2,charlotte cardin,confetti
 7,https://www.youtube.com/watch?v=JSdOXqsy2A0&list=RDCLAK5uy_mkh1nnin_Fb4OkYs--r2iF59j62Y_YXyE&index=2,lewis capaldi,haven't you ever been in love before?
@@ -111,11 +110,9 @@ id,question,artist,song
 147,https://www.youtube.com/watch?v=6ZktNItwexo&t=8,No Doubt,Spiderwebs
 148,https://www.youtube.com/watch?v=wt1YkGO2Ieo,No Doubt,Hey Baby
 149,https://www.youtube.com/watch?v=2kjolTLZ_Mg,The Weeknd ft. Anitta,Sao Paulo
-150,https://www.youtube.com/watch?v=MLlSSJ0z7xM,The Weeknd,Dancing In The Flames
-151,https://www.youtube.com/watch?v=5EpyN_6dqyk,The Weeknd & Playboi Carti,Timeless
+150,https://www.youtube.com/watch?v=MLlSSJ0z7xM&t=11,The Weeknd,Dancing In The Flames
 152,https://www.youtube.com/watch?v=XXYlFuWEuKI,The Weeknd,Save Your Tears
 153,https://www.youtube.com/watch?v=4NRXx6U8ABQ&t=33,The Weeknd,Blinding Lights
-154,https://www.youtube.com/watch?v=Mx92lTYxrJQ&t=14,The Weeknd & JENNIE & Lily-Rose Depp,One Of The Girls
 155,https://www.youtube.com/watch?v=CW5oGRx9CLM&t=14,The Weeknd,False Alarm
 159,https://www.youtube.com/watch?v=mRD0-GxqHVo,Glass Animals,Heat Waves
 164,https://www.youtube.com/watch?v=RqHbD1i4NF4,Glass Animals,Creatures in Heaven
@@ -150,6 +147,5 @@ id,question,artist,song
 210,https://www.youtube.com/watch?v=Bpaf6Dm9iRc,Tate McRae,It's ok I'm ok
 211,https://www.youtube.com/watch?v=rwlFWWGaZ5Y,Tate McRae,Revolving door
 212,https://www.youtube.com/watch?v=dpvQqmX6SUI,Tate McRae,Just Keep Watching
-213,https://www.youtube.com/watch?v=7InTkBxPtK4,Tate McRae,Sports car
+213,https://www.youtube.com/watch?v=7InTkBxPtK4&t=16,Tate McRae,Sports car
 214,https://www.youtube.com/watch?v=YXt0Nw8xWh0,Tate McRae,exes
-215,https://www.youtube.com/watch?v=cr4wnsLI_Xw,Tate McRae,2 hands

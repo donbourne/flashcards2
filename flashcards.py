@@ -183,12 +183,14 @@ class GameController:
                 try:
                     videos = get_youtube_videos(api_key, full_query, max_results=10, only_include_popular=True, view_threshold=1000000)
                     
-                    # Filter out videos already in the list
-                    existing_urls = set(pair.question.question for pair in self.knowledge_base.pairs)
-                    new_videos = [v for v in videos if v[0] not in existing_urls]
+                    # Filter out videos already in the list, ignoring trailing t=... in URLs
+                    def strip_trailing_time(url):
+                        # Remove trailing &t=... or ?t=... from the URL
+                        return re.sub(r'([&?]t=\d+)$', '', url)
+                    existing_urls = set(strip_trailing_time(pair.question.question) for pair in self.knowledge_base.pairs)
+                    new_videos = [v for v in videos if strip_trailing_time(v[0]) not in existing_urls]
 
                     # Sort by views (assuming get_youtube_videos returns (url, artist, song, views))
-                    # If not, you may need to adjust get_youtube_videos to return views as the 4th element
                     if new_videos and len(new_videos[0]) == 4:
                         new_videos.sort(key=lambda x: x[3], reverse=True)
                     # If views are not available, just use the order returned
@@ -263,16 +265,22 @@ class GameController:
             # print a distribution summary using *s for each streak
             for streak, count in sorted(streak_distribution.items()):
                 print(f"Streak {streak}: {'*' * count}")
-        
+
+        # Ask user for play mode
+        print("Choose play mode:")
+        print("1: Type in artist and song name (normal mode)")
+        print("2: Self-assessment mode (press enter to reveal answer, then y/n if you knew it)")
+        play_mode = input("Enter 1 or 2: ").strip()
+
         ordered_pairs = generate_ordered_pairs()
         last_modified_time = os.path.getmtime('music_qa.csv')
 
         while ordered_pairs:
             next_pair = ordered_pairs.pop(0)
             correct_streak = get_correct_streak(next_pair.id)
-            
-            if correct_streak == 0:
-                print(f"{next_pair.answer.correct_answer[0]} - {next_pair.answer.correct_answer[1]}")
+
+            # if correct_streak == 0:
+            #     print(f"{next_pair.answer.correct_answer[0]} - {next_pair.answer.correct_answer[1]}")
 
             if correct_streak >= 4:
                 print(f"Skipping {next_pair.question.question} - already completed")
@@ -286,10 +294,19 @@ class GameController:
                 next_pair.question.play_audio(offset=random_offset)
             else:
                 next_pair.question.play_audio()
-            
-            artist_name = input("Enter the artist name: ")
-            song_name = input("Enter the song name: ")
-            correct = next_pair.answer.check_answer((artist_name, song_name))
+
+            if play_mode == '1':
+                artist_name = input("Enter the artist name: ")
+                song_name = input("Enter the song name: ")
+                correct = next_pair.answer.check_answer((artist_name, song_name))
+            elif play_mode == '2':
+                input("Press Enter to reveal the answer...")
+                print(f"Answer: {next_pair.answer.correct_answer[0]} - {next_pair.answer.correct_answer[1]}")
+                yn = input("Did you know the answer? (y/n): ").strip().lower()
+                correct = yn == 'y'
+            else:
+                print("Invalid play mode. Exiting.")
+                break
 
             if correct:
                 correct_streak = get_correct_streak(next_pair.id) + 1
